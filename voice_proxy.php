@@ -2,9 +2,6 @@
 header('Content-Type: application/json');
 
 // Chave de API - Certifique-se de que esta chave está ativa e com faturamento/quota OK
-<?php
-header('Content-Type: application/json');
-
 // Tenta buscar de 3 formas diferentes para garantir que o Render entregue a chave
 $apiKey = getenv('GEMINI_API_KEY') ?: $_ENV['GEMINI_API_KEY'] ?: $_SERVER['GEMINI_API_KEY'];
 
