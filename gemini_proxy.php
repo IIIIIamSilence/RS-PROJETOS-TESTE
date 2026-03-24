@@ -1,17 +1,20 @@
 <?php
+// Desabilita exibição de erros brutos para manter o JSON limpo
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
+
 header('Content-Type: application/json');
-session_start(); // 🔥 Mantém a memória da IA entre as perguntas
+header('Access-Control-Allow-Origin: *'); 
+session_start(); // Mantém a memória para a IA saber o que foi dito antes
 
 // ============================================================
-// 1. BUSCA EXAUSTIVA DE CHAVES (ROTAÇÃO GEMINI_API_KEY 1, 2 e 3)
+// 1. BUSCA DE CHAVES (RODÍZIO 1, 2 e 3)
 // ============================================================
 function getApiKey($suffix = "") {
     $name = "GEMINI_API_KEY" . $suffix;
-    // Tenta buscar de todas as formas para garantir que o Render entregue a chave
     return getenv($name) ?: ($_ENV[$name] ?? ($_SERVER[$name] ?? null));
 }
 
-// Criamos a lista de chaves para o Chat (Principal, Reserva 1 e Reserva 2)
 $apiKeys = array_filter([
     getApiKey(""),   // GEMINI_API_KEY
     getApiKey("_2"), // GEMINI_API_KEY_2
@@ -19,12 +22,12 @@ $apiKeys = array_filter([
 ]);
 
 if (empty($apiKeys)) {
-    echo json_encode(['error' => 'Nenhuma variável GEMINI_API_KEY detectada no ambiente do Render.']);
+    echo json_encode(['resposta' => 'Erro: Chaves de API não configuradas no ambiente.']);
     exit;
 }
 
 // ============================================================
-// 2. RECEBER INPUT
+// 2. RECEBER INPUT DO CLIENTE
 // ============================================================
 $jsonInput = file_get_contents('php://input');
 $input = json_decode($jsonInput, true);
@@ -36,19 +39,18 @@ if (empty($userPrompt)) {
 }
 
 // ============================================================
-// 3. MEMÓRIA DA IA
+// 3. MEMÓRIA DA SESSÃO
 // ============================================================
 if (!isset($_SESSION['historico'])) {
     $_SESSION['historico'] = [];
 }
-
-// Limita histórico (evita que o prompt fique gigante e caro)
+// Mantém apenas as últimas 10 mensagens para não estourar o limite do prompt
 if (count($_SESSION['historico']) > 10) {
     $_SESSION['historico'] = array_slice($_SESSION['historico'], -10);
 }
 
 // ============================================================
-// 4. SEU PROMPT ORIGINAL (INTACTO)
+// 4. PROMPT E REGRAS DO RS BURGER (SEU TEXTO ADAPTADO)
 // ============================================================
 $instrucoes = 'Você é um atendente virtual do restaurante RS Burger dentro de um sistema de cardápio digital.
 
@@ -73,115 +75,36 @@ FUNÇÃO:
 - Recomendar pratos com base no gosto do cliente
 - Incentivar o fechamento do pedido
 
-CARDÁPIO OFICIAL (USE EXATAMENTE ESSES NOMES):
+CARDÁPIO OFICIAL:
+🍕 PIZZAS: Pizza Marguerita (R$45), Pizza de Calabresa (R$42), Pizza de Pepperoni (R$40), Pizza vegana Especial (R$60), Pizza de Frango com Catupiry (R$55), Pizza de 4 queijos (R$42), Pesto e tomate seco (R$58), Portuguesa Prime (R$47).
+🍔 HAMBURGUERS: Hamburguer clássico (R$25), Frango Chick (R$35), Smash Onion (R$22), Bacon Jam (R$34), Double Cheddar (R$38), Vegetariano de Grão-de-Bico (R$28), X-Tudo (R$30).
+🍟 ACOMPANHAMENTOS: Saladas (R$18), Queijo quente (R$12), Batata Palito Média (R$15), Batata Especial da Casa (R$28), Nuggets de Frango (R$20), Onion Rings (R$22).
+🥤 BEBIDAS: Coca Cola Zero Lata (R$4,50), Coca cola lata (R$5), Suco natural de laranja jarra (R$10), Suco natural de maracujá jarra (R$15), Cerveja Long Neck (R$11), Água Mineral 500ml (R$5).
 
-🍕 PIZZAS:
-- Pizza Marguerita (R$45)
-- Pizza de Calabresa (R$42)
-- Pizza de Pepperoni (R$40)
-- Pizza vegana Especial (R$60)
-- Pizza de Frango com Catupiry (R$55)
-- Pizza de 4 queijos (R$42)
-- Pesto e tomate seco (R$58)
-- Portuguesa Prime (R$47)
+CUPONS: RS10, RS25, RS50.
 
-🍔 HAMBURGUERS:
-- Hamburguer clássico (R$25)
-- Frango Chick (R$35)
-- Smash Onion (R$22)
-- Bacon Jam (R$34)
-- Double Cheddar (R$38)
-- Vegetariano de Grão-de-Bico (R$28)
-- X-Tudo (R$30) (acompanha batata frita e refrigerante)
+ESTILO: Amigável, natural, use emojis 🍔🍕🍟🥤 e respostas curtas. Ao confirmar, pergunte se deseja algo mais.
 
-🍟 ACOMPANHAMENTOS:
-- Saladas (R$18)
-- Queijo quente (R$12)
-- Batata Palito Média (R$15)
-- Batata Especial da Casa (R$28)
-- Nuggets de Frango (R$20)
-- Onion Rings (R$22)
+Pergunta do cliente: ';
 
-🥤 BEBIDAS:
-- Coca Cola Zero Lata (R$4,50)
-- Coca cola lata (R$5)
-- Suco natural de laranja jarra (R$10)
-- Suco natural de maracujá jarra (R$15)
-- Cerveja Long Neck (R$11)
-- Água Mineral 500ml (R$5)
-
-🔥 POPULARES:
-- Pizza Marguerita
-- Pizza de Calabresa
-- Pizza de Pepperoni
-- X-Tudo
-- Nuggets de Frango
-- Batata Especial da Casa
-
-COMPORTAMENTO:
-- Sempre sugira itens do cardápio acima
-- Nunca invente pratos que não existem
-- Use exatamente os nomes do cardápio
-- Se o cliente estiver indeciso, sugira itens populares
-
-REGRAS INTELIGENTES:
-- Se o cliente disser que está com muita fome → sugira X-Tudo, pizzas ou combos completos
-- Se disser que quer algo leve → sugira Saladas ou Vegetariano de Grão-de-Bico
-- Sugira sempre acompanhamentos 
-
-CARRINHO:
-- Quando o cliente decidir um item: use "acao": "adicionar_carrinho".
-- NOVIDADE: Quando o cliente disser que não quer mais nada, que pode fechar, finalizar ou que é só isso, você deve confirmar e enviar este JSON:
-
-{
- "acao": "finalizar_conversa",
- "mensagem": "Perfeito! Abrindo seu carrinho para finalização..."
-}
-
-- Se tiver mais de um item, inclua todos no JSON
-- Nunca explique o JSON
-
-CUPONS:
-- Em momentos aleatórios, você pode oferecer um cupom
-Cupons disponíveis: RS10, RS25, RS50.
-Formato: 🎁 Cupom disponível: CODIGO
-
-ESTILO:
-- Amigável e natural
-- Use emojis 🍔🍕🍟🥤
-- Respostas curtas e diretas
-
-- Ao confirmar um pedido, diga ao cliente que os itens já foram adicionados à sacola e pergunte se ele deseja algo mais para acompanhar
-
-Pergunta do cliente:;
-
-// ============================================================
-// 5. MONTA CONTEXTO COM MEMÓRIA
-// ============================================================
+// Monta o contexto final (Instruções + Histórico + Pergunta Atual)
 $mensagemCompleta = $instrucoes . "\n\n";
-
 foreach ($_SESSION['historico'] as $msg) {
     $mensagemCompleta .= $msg . "\n";
 }
-
 $mensagemCompleta .= "Cliente: " . $userPrompt;
 
 // ============================================================
-// 6. LÓGICA DE RODÍZIO (RETRY LOGIC)
+// 5. LÓGICA DE RODÍZIO (TENTATIVA ENTRE AS CHAVES)
 // ============================================================
 $respostaFinal = null;
-$erroUltimaTentativa = "";
-
-
 
 foreach ($apiKeys as $key) {
-    // Usamos o modelo 1.5-flash para maior estabilidade e quota em apresentações
-    $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $key;
+    // Usamos gemini-1.5-flash pela rapidez e limites de uso melhores para demonstrações
+    $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" . $key;
 
     $payload = [
-        "contents" => [[
-            "parts" => [["text" => $mensagemCompleta]]
-        ]]
+        "contents" => [["parts" => [["text" => $mensagemCompleta]]]]
     ];
 
     $ch = curl_init($url);
@@ -191,7 +114,7 @@ foreach ($apiKeys as $key) {
         CURLOPT_POSTFIELDS => json_encode($payload),
         CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
         CURLOPT_SSL_VERIFYPEER => false,
-        CURLOPT_TIMEOUT => 12 // Tempo de espera para não travar a apresentação
+        CURLOPT_TIMEOUT => 12
     ]);
 
     $result = curl_exec($ch);
@@ -200,30 +123,21 @@ foreach ($apiKeys as $key) {
 
     $dados = json_decode($result, true);
 
-    // Se o código for 200, a chave funcionou!
     if ($httpCode === 200 && isset($dados['candidates'][0]['content']['parts'][0]['text'])) {
         $respostaFinal = $dados['candidates'][0]['content']['parts'][0]['text'];
-        break; // Sai do loop (sucesso)
-    } else {
-        $erroUltimaTentativa = $dados['error']['message'] ?? "Erro HTTP $httpCode";
-        // Continua o loop para a próxima chave...
+        break; // Sucesso! Sai do loop.
     }
+    // Se deu erro, o loop continua para a próxima chave (GEMINI_API_KEY_2, etc)
 }
 
 // ============================================================
-// 7. RESPOSTA FINAL
+// 6. RETORNO PARA O FRONT-END
 // ============================================================
 if ($respostaFinal) {
-    // Salva no histórico da sessão
     $_SESSION['historico'][] = "Cliente: " . $userPrompt;
     $_SESSION['historico'][] = "IA: " . $respostaFinal;
-
     echo json_encode(['resposta' => $respostaFinal]);
 } else {
-    // Se todas as chaves falharem
-    echo json_encode([
-        'resposta' => "Desculpe, tive um probleminha técnico devido à alta demanda. Pode repetir?",
-        'debug' => $erroUltimaTentativa
-    ]);
+    echo json_encode(['resposta' => "Desculpe, tive um probleminha técnico. Pode repetir?"]);
 }
 ?>
