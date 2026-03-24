@@ -96,7 +96,7 @@ $erroUltimaTentativa = "";
 
 foreach ($apiKeys as $key) {
     // Usamos o modelo 1.5-flash para maior estabilidade e quota em apresentações
-    $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" . $key;
+    $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $key;
 
     $payload = [
         "contents" => [[
