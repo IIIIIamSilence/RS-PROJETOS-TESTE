@@ -1,0 +1,7 @@
+node_modules/
+.env
+
+# Ignorar pastas de dependências
+vendor/
+node_modules/
+

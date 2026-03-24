@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RS Burger</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="barra-topo">
+    <div class="nome-da-marca">
+      <span class="texto-marca">RS Burger</span>
+      <span class="subtitulo-marca">Peça já!</span>
+    </div>
+
+    <div class="acoes-cabecalho">
+      <div class="topo-ia">
+        <div class="topo-ia-texto">
+          <strong>Se sentindo indeciso?</strong>
+          <span>Nossa IA decide por você ;)</span>
+        </div>
+        <div class="topo-ia-acoes">
+          <button id="abrirIaPedidoTopo" class="botao-acao" style="background:#0d6efd;">🧠 IA Pedido</button>
+        </div>
+      </div>
+      <button id="abrirChat" class="botao-icone" aria-label="Ajuda">📞</button>
+      <button id="abrirCarrinho" class="botao-icone" aria-label="Ver carrinho">
+        🛒 <span class="notificacao" id="contadorCarrinho">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-principal">
+    <section class="container-conteudo">
+      <section class="cabecalho-inicial">
+        <div class="etiqueta-oferta">OFERTAS LIMITADAS</div>
+        <h1>Pediu, Chegou ;)</h1>
+        <p>Escolha seus itens favoritos e combos mais pedidos!</p>
+        <div class="categorias-comida">
+          <a href="#popular" class="botao-categoria">🔥 Populares</a>
+          <a href="#burgers" class="botao-categoria">🍔 Hamburguers</a>
+          <a href="#pizzas" class="botao-categoria">🍕 Pizza</a>
+          <a href="#sides" class="botao-categoria">🍟 Acompanhamentos</a>
+          <a href="#drinks" class="botao-categoria">🥤 Bebidas</a>
+        </div>
+      </section>
+
+      <section id="popular" class="secao-menu" aria-label="Itens populares">
+        <h2>Não para de sair🔥</h2>
+        <div class="grade-cartoes">
+          <article class="cartao">
+            <div class="imagem-cartao">
+                <img src="../img/marguerita.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Pizza Marguerita</h3>
+              <p>Pizza clássica com manjericão e mussarela</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$45</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+          
+          <article class="cartao">
+            <div class="imagem-cartao">
+              <img src="../img/PizzaCalabresa.png">
+            </div>
+             <div class="corpo-cartao">
+            <h3>Pizza de Calabresa</h3> <p>Calabresa fatiada, cebola e azeitonas pretas.</p> <div class="rodape-cartao">
+            <span class="preco">R$42</span> <button type="button" class="botao-adicionar">Adicionar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="cartao">
+          <div class="imagem-cartao" >
+            <img src="../img/PizzaPepperoni.jpeg">
+          </div>
+           <div class="corpo-cartao">
+            <h3>Pizza de Pepperoni</h3> <p>Carregada pra matar sua fome com muito Pepperoni, molho de tomate e queijo</p> <div class="rodape-cartao">
+            <span class="preco">R$40</span> <button type="button" class="botao-adicionar">Adicionar</button>
+            </div>
+          </div>
+        </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/X-tudo.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>X-Tudo</h3>
+              <p>Famoso X-tudo bem recheado, sem limite pra fome! Acompanha batata frita e refrigerante</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$30</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Nuggets Caseiro.jpg">
+            </div> <div class="corpo-cartao">
+            <h3>Nuggets Caseiro</h3> <p>Deliciosos nuggets de frango, crocantes por fora e macios por dentro.</p> <div class="rodape-cartao">
+            <span class="preco">R$20</span> <button type="button" class="botao-adicionar">Adicionar</button>
+            </div>
+          </div>
+        </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Batata Caseira.jpeg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Batata especial da casa</h3>
+              <p>Batata frita coberta com cheddar cremoso e farofa de bacon.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$28</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="pizzas" class="secao-menu" aria-label="Menu de Pizzas">
+        <h2>Pizzas</h2>
+        <div class="grade-cartoes">
+          <article class="cartao">
+            <div class="imagem-cartao">
+              <img src="../img/PizzaPepperoni.jpeg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Pizza de Pepperoni</h3>
+              <p>Carregada pra matar sua fome com muito Pepperoni, molho de tomate e queijo</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$40</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/PizzaVegana.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Pizza vegana Especial</h3>
+              <p>Pimenta, abobora, e tofu para quem prefere algo mais natural</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$60</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/PizzaFrangoCatupiry.png">
+            </div>
+             <div class="corpo-cartao">
+            <h3>Pizza de Frango com Catupiry</h3> <p>Pizza de frango grelhado com catupiry, alface e tomate.</p> <div class="rodape-cartao">
+            <span class="preco">R$55</span> <button type="button" class="botao-adicionar">Adicionar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Pizza4Queijos.jpeg">
+            </div>
+             <div class="corpo-cartao">
+            <h3>Pizza de 4 queijos</h3> <p>Pizza com quatro tipos de queijos deliciosos e cremosos e molho de tomate.</p> <div class="rodape-cartao">
+            <span class="preco">R$42</span> <button type="button" class="botao-adicionar">Adicionar</button>
+            </div>
+          </div>
+        </article> 
+
+        <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/PizzaTomateSecoPesto.png">
+            </div>
+             <div class="corpo-cartao">
+            <h3>Pesto e tomate seco</h3> <p>Muçarela, tomates secos artesanais, finalizada com molho pesto de manjericão e castanhas.</p> <div class="rodape-cartao">
+            <span class="preco">R$58</span> <button type="button" class="botao-adicionar">Adicionar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/PizzaPortuguesa.jpg">
+            </div>
+             <div class="corpo-cartao">
+            <h3>Portuguesa Prime</h3> <p>Presunto cozido, ovos, cebola, ervilhas, muçarela e o toque clássico do orégano.</p> <div class="rodape-cartao">
+            <span class="preco">R$47</span> <button type="button" class="botao-adicionar">Adicionar</button>
+            </div>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section id="burgers" class="secao-menu" aria-label="Menu de Hamburguers">
+        <h2>Hamburguers</h2>
+        <div class="grade-cartoes">
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/HamburguerClassico.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Hamburguer clássico</h3>
+              <p>Carne assada 120g, queijo, alface, tomate e cebola.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$25</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/FrangoChick.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Frango Chick</h3>
+              <p>Frango muito crocante, com molho picante, alface fresca, tomate, queijo e catupiry empanado.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$35</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/SmashOnion.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Smash Onion</h3>
+              <p>Burger de 100g prensado com cebola, queijo cheddar derretido e pão brioche..</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$22</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/BaconJam.png">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Bacon Jam</h3>
+              <p>Carne 150g, muito queijo prato, maionese defumada e nossa exclusiva geleia de bacon.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$34</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/DuploCheddar.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Double Cheddar</h3>
+              <p>Dois burgers de 120g, camada dupla de cheddar cremoso e cebola caramelizada.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$38</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Grão de Bico.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Vegetariano de Grão-de-Bico</h3>
+              <p>Burger artesanal de grão-de-bico, alface americana, tomate e maionese de ervas.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$28</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sides" class="secao-menu" aria-label="Menu de Acompanhamentos">
+        <h2>Acompanhamentos</h2>
+        <div class="grade-cartoes">
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/SaladaAcompanhamento.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Saladas</h3>
+              <p>Alface e rúcula frescas banhadas no azeite com tomate e tempero Fresco</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$18</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Queijo Quente.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Queijo quente</h3>
+              <p>Pão macio com muitoo queijo derretido e maionese caseira</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$12</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Batata palito média.png">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Batata Palito Média</h3>
+              <p>Porção individual de batatas crocantes e sequinhas.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$15</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Batata Caseira.jpeg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Batata Especial da Casa</h3>
+              <p>Batata frita coberta com cheddar cremoso e farofa de bacon.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$28</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Nuggets Caseiro.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Nuggets de Frango</h3>
+              <p>8 unidades super crocantes acompanhadas de molho barbecue.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$20</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/OnioRings.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Onion Rings</h3>
+              <p>Anéis de cebola empanados e fritos, acompanhados de maionese de alho.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$22</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="drinks" class="secao-menu" aria-label="Menu de Bebidas">
+        <h2>Bebidas</h2>
+        <div class="grade-cartoes">
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/CocaColaZeroLata.jpeg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Coca Cola Zero Lata</h3>
+              <p>Coca Cola Zero Lata  350ML</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$4,50</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Coca cola lata.png">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Coca cola lata</h3>
+              <p>Coca Cola lata 350ML</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$5</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/SucoLaranjaJARRA.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Suco natural de laranja jarra</h3>
+              <p>Suco natural de laranja em jarra 1L batido na hora</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$10</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/SucoMaracujaJARRA.jpg">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Suco natural de maracujá jarra</h3>
+              <p>Suco natural de maracujá em jarra 1L batido na hora</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$15</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Long Neck Heineken.png">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Cerveja Long Neck</h3>
+              <p>Cerveja Long Neck HEINEKEN 330ML</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$11</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cartao">
+            <div class="imagem-cartao" >
+              <img src="../img/Agua mineral.png">
+            </div>
+            <div class="corpo-cartao">
+              <h3>Água Mineral 500ml</h3>
+              <p>Água Mineral 500ml Com ou sem gás.</p>
+              <div class="rodape-cartao">
+                <span class="preco">R$5</span>
+                <button type="button" class="botao-adicionar">Adicionar</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="notas-informativas">
+        <p>Clique em qualquer item para adicionar ao carrinho. Ele será atualizado automaticamente</p>
+      </section>
+    </section>
+
+    <aside class="menu-rapido" aria-label="Menu rápido">
+      <div class="cabecalho-do-menu">
+        <h2>Menu Rápido</h2>
+        <p>Selecione sua categoria preferida</p>
+      </div>
+      <nav class="navegacao-menu">
+        <a href="#popular" class="link-do-menu">🔥 Populares</a>
+        <a href="#pizzas" class="link-do-menu">🍕 Pizzas</a>
+        <a href="#burgers" class="link-do-menu">🍔 Hamburguers</a>
+        <a href="#sides" class="link-do-menu">🍟 Acompanhamentos</a>
+        <a href="#drinks" class="link-do-menu">🥤 Bebidas</a>
+      </nav>
+    </aside>
+  </main>
+
+  <aside class="painel-chat" id="painelAjuda" style="display:none;">
+    <header class="cabecalho-chat">
+      <div>
+        <h2>Ajuda</h2>
+        <p style="font-size:0.8rem; margin:0.15rem 0 0; color:#666;">Precisa de suporte? Contate-nos.</p>
+      </div>
+      <button id="fecharAjuda" class="fechar-chat" aria-label="Fechar ajuda" type="button">✕</button>
+    </header>
+    <div class="corpo-chat" role="log" aria-live="polite" style="padding:1rem; display:flex; flex-direction:column; gap:.6rem;">
+      <div style="background:#f7f7f7; border:1px solid #e5e5e5; border-radius:12px; padding:1rem;">
+        <p style="margin:0; font-weight:700;">📞 Telefone de Suporte:</p>
+        <p style="margin:.2rem 0 0; font-size:1rem;">(11) 4002-8922</p>
+      </div>
+      <div style="background:#f7f7f7; border:1px solid #e5e5e5; border-radius:12px; padding:1rem;">
+        <p style="margin:0; font-weight:700;">Como podemos ajudar?</p>
+        <p style="margin:.2rem 0 0; color:#444;">Entre em contato para dúvidas sobre pedidos, entrega ou cardápio.</p>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="painel-chat" id="painelChat">
+    <header class="cabecalho-chat">
+      <div>
+        <h2>Chat Ajuda</h2>
+        <p style="font-size:0.8rem; margin:0.15rem 0 0; color:#666;">Pergunte sobre pedidos e delivery</p>
+      </div>
+      <button id="fecharChat" class="fechar-chat" aria-label="Fechar chat" type="button">✕</button>
+    </header>
+    <div class="corpo-chat" id="corpoChat" role="log" aria-live="polite">
+      <div class="mensagem-chat robo">Olá! Eu sou seu assistente de ajuda.</div>
+    </div>
+    <form id="formularioChat" class="formulario-chat" aria-label="Entrada de chat">
+      <input id="entradaChat" type="text" placeholder="Digite sua pergunta..." autocomplete="off" required />
+      <button type="submit">Enviar</button>
+    </form>
+    <div class="rodape-chat">
+      <p><strong>Nota:</strong> Para IA, use o painel IA Pedido.</p>
+    </div>
+  </aside>
+
+  <aside class="painel-chat" id="painelIAPedido" style="display:none;">
+    <header class="cabecalho-chat">
+      <div>
+        <h2>IA Pedido</h2>
+        <p style="font-size:0.8rem; margin:0.15rem 0 0; color:#666;">Escreva seu pedido</p>
+      </div>
+      <button id="fecharIAPedido" class="fechar-chat" aria-label="Fechar chat" type="button">✕</button>
+    </header>
+    <div class="corpo-chat" id="corpoIAPedido" role="log" aria-live="polite">
+      <div class="mensagem-chat robo">Olá! Escreva o que deseja pedir ou peça uma sugestão.</div>
+    </div>
+    <form id="formularioIAPedido" class="formulario-chat" aria-label="Entrada de chat IA Pedido">
+      <input id="entradaIAPedido" type="text" placeholder="Digite seu pedido..." autocomplete="off" required />
+      <button type="submit">Enviar</button>
+    </form>
+    <div class="rodape-chat">
+      <p><strong>Nota:</strong> Respostas de IA de pedido aparecerão aqui.</p>
+    </div>
+  </aside>
+
+  <aside class="painel-carrinho" id="painelCarrinho" style="display:none;">
+    <header class="cabecalho-chat">
+      <div>
+        <h2>Meu Carrinho</h2>
+        <p style="font-size:0.8rem; margin:0.15rem 0 0; color:#666;">Adicione itens e aplique cupons</p>
+      </div>
+      <button id="fecharCarrinho" class="fechar-chat" aria-label="Fechar carrinho" type="button">✕</button>
+    </header>
+    <div class="corpo-chat" id="corpoCarrinho" role="log" aria-live="polite">
+      <div class="mensagem-chat robo">Seu carrinho está vazio.</div>
+    </div>
+    <div class="formulario-chat" style="margin:0.6rem 1rem 0; gap:0.3rem; flex-wrap: wrap;">
+      <input id="cupomInput" type="text" placeholder="Código de cupom" style="flex:1; border-radius:999px; border:1px solid #ccc; padding:0.6rem; outline:none;" />
+      <button id="aplicarCupom" style="padding:0.65rem 1rem; border-radius:999px; border:none; background:#2c3e50; color:white; cursor:pointer;">Aplicar cupom</button>
+    </div>
+    <div class="rodape-chat" style="display:flex; flex-direction:column; gap:.35rem; margin-top:.4rem;">
+      <div style="display:flex; justify-content:space-between;"><strong>Total</strong><strong id="totalCarrinho">R$0.00</strong></div>
+      <div style="font-size:.85rem; color:#555;">Cupom aplicado: <span id="cupomAplicado">nenhum</span></div>
+      <button id="finalizarPedido" style="background:#d72f2f; margin-top:.35rem; border:none; color:white; border-radius:999px; padding:0.65rem; cursor:pointer;">Finalizar pedido</button>
+    </div>
+  </aside>
+
+  <div class="fundo-escuro" id="fundoEscuro"></div>
+
+  <div id="container-voz" style="position: fixed; bottom: 20px; left: 20px; z-index: 9999; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
+    <div id="transcricao-voz" style="display: none; background: white; color: #333; padding: 10px 15px; border-radius: 15px; border: 2px solid #ff4757; font-size: 14px; max-width: 200px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-family: sans-serif;">
+        Ouvindo...
+    </div>
+    
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="btnVoz" onclick="iniciarIAVoz()" style="background: #ff4757; border: none; border-radius: 50%; width: 60px; height: 60px; color: white; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 24px;">
+            🎤
+        </button>
+    </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,988 @@
+﻿/* Layout bÃ¡sico */
+:root {
+  --cor-fundo: #ffefdd;
+  --cor-superficie: #ffffff;
+  --cor-texto: #231f20;
+  --cor-suave: rgba(35, 31, 32, 0.7);
+  --cor-primaria: #d72f2f;
+  --cor-secundaria: #ffb81c;
+  --cor-sombra: rgba(0, 0, 0, 0.15);
+  --raio-borda: 18px;
+  --largura-maxima: 1100px;
+  --tamanho-toque: 50px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(160deg, rgba(255, 90, 95, 0.1), rgba(255, 139, 61, 0.05)),
+    var(--cor-fundo);
+  color: var(--cor-texto);
+  min-height: 100vh;
+}
+
+a {
+  color: var(--cor-primaria);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.barra-topo {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.5rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.nome-da-marca {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.texto-marca {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  font-size: 1.2rem;
+}
+
+.subtitulo-marca {
+  font-size: 0.75rem;
+  color: var(--cor-suave);
+}
+
+.acoes-cabecalho {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.topo-ia {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 0.2rem 0.35rem;
+  margin-right: 0.25rem;
+}
+
+.topo-ia-texto {
+  display: none;
+}
+
+.topo-ia-acoes {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+}
+
+.topo-ia-acoes .botao-acao {
+  font-size: 0.72rem;
+  padding: 0.25rem 0.45rem;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  min-width: 85px;
+}
+
+.topo-ia-acoes .botao-acao:hover {
+  transform: translateY(-1px);
+}
+
+.botao-icone {
+  width: var(--tamanho-toque);
+  height: var(--tamanho-toque);
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.botao-icone:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.15);
+}
+
+.notificacao {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--cor-primaria);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.layout-principal {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.9rem;
+  max-width: var(--largura-maxima);
+  margin: 2rem auto 3rem;
+  padding: 0 1.5rem;
+}
+
+.container-conteudo {
+  display: flex;
+  flex-direction: column;
+}
+
+.cabecalho-inicial {
+  text-align: left;
+  margin-left: 0;
+  padding-right: 0;
+}
+
+.destaque h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2rem);
+  line-height: 1.05;
+}
+
+.destaque p {
+  margin: 1rem 0 1.4rem;
+  max-width: 520px;
+  color: var(--cor-suave);
+  line-height: 1.5;
+}
+
+.categorias-comida {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  margin-left: 0;
+}
+
+@media (min-width: 1300px) {
+  .cabecalho-inicial {
+    margin-left: -400px;
+  }
+
+  .categorias-comida {
+    margin-left: 450px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .cabecalho-inicial {
+    margin-left: 0;
+    padding-right: 0.35rem;
+  }
+
+  .categorias-comida {
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 850px) {
+  .cabecalho-inicial {
+    margin-left: 0;
+    padding-right: 0.2rem;
+  }
+
+  .categorias-comida {
+    justify-content: flex-start;
+  }
+}
+
+.botao-categoria {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--cor-texto);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.botao-categoria:hover {
+  background: rgba(255, 90, 95, 0.18);
+  transform: translateY(-1px);
+}
+
+.secao-menu {
+  margin-top: 2rem;
+}
+
+.menu-rapido {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(300px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2.4rem);
+  overflow-y: auto;
+  background: rgba(255, 163, 112, 0.18);
+  border: 1px solid rgba(255, 138, 61, 0.25);
+  border-radius: var(--raio-borda);
+  padding: 1.25rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+  z-index: 10;
+}
+
+.cabecalho-do-menu h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.cabecalho-do-menu p {
+  margin: 0.35rem 0 0;
+  color: var(--cor-suave);
+  font-size: 0.95rem;
+}
+
+.navegacao-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.link-do-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 138, 61, 0.3);
+  color: var(--cor-texto);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.link-do-menu:hover {
+  background: rgba(255, 138, 61, 0.18);
+  transform: translateY(-1px);
+}
+
+.chamada-menu {
+  background: rgba(255, 90, 95, 0.12);
+  border-radius: 14px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 138, 61, 0.2);
+}
+
+.chamada-menu h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+}
+
+.chamada-menu p {
+  margin: 0 0 1rem;
+  color: var(--cor-suave);
+  font-size: 0.95rem;
+}
+
+.botao-acao {
+  width: 100%;
+  background: var(--cor-primaria);
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.botao-acao:hover {
+  background: #ff3b46;
+}
+
+.layout-principal {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.9rem;
+  max-width: var(--largura-maxima);
+  margin: 2rem auto 3rem;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.menu-rapido {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(300px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2.4rem);
+  overflow-y: auto;
+  background: rgba(255, 163, 112, 0.18);
+  border: 1px solid rgba(255, 138, 61, 0.25);
+  border-radius: var(--raio-borda);
+  padding: 1.25rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+  z-index: 10;
+}
+
+.menu-rapido.aberto {
+  display: flex;
+}
+
+.chamada-menu {
+  text-align: left;
+  background: rgba(255, 90, 95, 0.12);
+  border-radius: 14px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 138, 61, 0.2);
+}
+
+@media (max-width: 1150px) {
+  .layout-principal {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
+  .menu-rapido {
+    display: none;
+  }
+
+  #toggleMenuRapido {
+    display: inline-flex;
+  }
+
+  .cabecalho-inicial {
+    margin-left: 0;
+  }
+
+  .categorias-comida {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 840px) {
+  .menu-rapido {
+    position: fixed;
+    top: 4rem;
+    right: 0.7rem;
+    left: 0.7rem;
+    width: auto;
+    max-height: 40vh;
+    margin: 0;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.16);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.98);
+    z-index: 90;
+    overflow-y: auto;
+    display: none;
+  }
+
+  .menu-rapido.aberto {
+    display: flex;
+  }
+
+  .menu-rapido .chamada-menu {
+    margin-top: 0;
+  }
+
+  #toggleMenuRapido {
+    display: inline-flex;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 100;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: #d72f2f;
+    color: #fff;
+  }
+}
+
+@media (max-width: 840px) {
+  .grade-cartoes {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin-right: 0;
+  }
+
+  .menu-rapido {
+    position: fixed;
+    top: 5.7rem;
+    left: 0.7rem;
+    right: 0.7rem;
+    transform: none;
+    width: auto;
+    max-height: 32vh;
+    margin: 0;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.16);
+    border: 1px solid rgba(255, 138, 61, 0.35);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.95);
+    overflow-y: auto;
+    z-index: 80;
+  }
+
+  .chamada-menu {
+    padding: 0.85rem;
+  }
+
+  .botao-acao {
+    padding: 0.65rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .painel-chat {
+    z-index: 120;
+  }
+
+  .layout-principal {
+    padding-top: 0.3rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .cabecalho-inicial {
+    margin-left: 0;
+  }
+
+  .categorias-comida {
+    margin-left: 0;
+  }
+
+  .barra-topo {
+    padding: 0.7rem 1rem;
+  }
+}
+.secao-menu h2 {
+  font-size: 1.6rem;
+  margin: 0;
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.grade-cartoes {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-right: 0;
+}
+
+@media (max-width: 980px) {
+  .grade-cartoes {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+.cartao {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--raio-borda);
+  border: 1px solid rgba(0, 0, 0, 0.085);
+  box-shadow: 0 14px 30px -18px var(--cor-sombra);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Isso garante que a div da imagem tenha um tamanho fixo e centralize o conteÃºdo */
+.imagem-cartao {
+  width: 100%;
+  height: 170px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+/* Isso faz a imagem se comportar corretamente lÃ¡ dentro */
+.imagem-cartao img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* A mÃ¡gica: preenche o espaÃ§o sem achatar a imagem */
+  object-position: center; /* Foca no meio da foto */
+}
+
+.corpo-cartao {
+  padding: 1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: right;
+  align-items: flex-end;
+}
+
+.corpo-cartao h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.1rem;
+}
+
+.corpo-cartao p {
+  margin: 0 0 1rem;
+  color: var(--cor-suave);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.rodape-cartao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.preco {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--cor-primaria);
+}
+
+.botao-adicionar {
+  background: var(--cor-primaria);
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.botao-adicionar:hover {
+  transform: translateY(-1px);
+  background: #ff3b46;
+}
+
+.notas-informativas {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--raio-borda);
+  padding: 1.25rem;
+  margin-top: 2rem;
+  color: var(--cor-suave);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Painel de chat */
+.botao-flutuante-ia {
+  display: none;
+}
+
+/* Botão flutuante IA apenas em telas menores */
+@media (max-width: 840px) {
+  .botao-flutuante-ia {
+    display: inline-flex;
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 100;
+    border: none;
+    background: #2c3e50;
+    color: #fff;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.painel-chat {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(380px, 90vw);
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: -14px 0 35px rgba(0, 0, 0, 0.18);
+  transform: translateX(110%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 30;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.painel-chat.aberto {
+  transform: translateX(0);
+}
+
+.painel-carrinho {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(380px, 90vw);
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: -14px 0 35px rgba(0, 0, 0, 0.18);
+  transform: translateX(110%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 30;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.painel-carrinho.aberto {
+  transform: translateX(0);
+}
+
+.cabecalho-chat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.cabecalho-chat h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.fechar-chat {
+  border: none;
+  background: transparent;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  color: var(--cor-suave);
+}
+
+.corpo-chat {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.texto-provisorio-chat {
+  color: var(--cor-suave);
+  line-height: 1.5;
+}
+
+.mensagem-chat {
+  max-width: 92%;
+  padding: 0.85rem 1rem;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  box-shadow: 0 10px 18px -12px rgba(0, 0, 0, 0.18);
+}
+
+.mensagem-chat.usuario {
+  background: rgba(255, 90, 95, 0.12);
+  align-self: flex-end;
+  color: var(--cor-texto);
+}
+
+.mensagem-chat.robo {
+  background: rgba(0, 0, 0, 0.06);
+  align-self: flex-start;
+  color: var(--cor-texto);
+}
+
+.formulario-chat {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  align-items: center;
+}
+
+.formulario-chat input {
+  flex: 1;
+  padding: 0.75rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.formulario-chat button {
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--cor-primaria);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.rodape-chat {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 0.85rem;
+  color: var(--cor-suave);
+}
+
+.fundo-escuro {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  z-index: 25;
+}
+
+.fundo-escuro.visivel {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 650px) {
+  .container-conteudo {
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .links-rapidos {
+    gap: 0.5rem;
+  }
+
+  .grade-cartoes {
+    grid-template-columns: 1fr;
+  }
+
+  .imagem-cartao {
+    height: 130px;
+    min-height: 120px;
+  }
+
+  .corpo-cartao {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .botao-adicionar {
+    width: 100%;
+    text-align: center;
+  }
+
+  .painel-chat {
+    width: 100vw;
+  }
+
+  .corpo-chat {
+    padding: 0.75rem;
+  }
+}
+@media (max-width: 1200px) {
+  .menu-rapido {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-height: none;
+    margin-top: 0;
+    box-shadow: none;
+  }
+
+  .layout-principal {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
+  .cabecalho-inicial {
+    margin-left: 0;
+    padding-right: 0;
+  }
+
+  .categorias-comida {
+    margin-left: 0;
+  }
+
+  .topo-ia {
+    margin-top: 0;
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .topo-ia-acoes {
+    gap: 0.2rem;
+  }
+}
+
+.topo-ia {
+  margin-top: 0.35rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.topo-ia-texto {
+  display: none;
+  color: #333;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  margin-right: auto;
+}
+
+.topo-ia-acoes {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+}
+
+.topo-ia .botao-acao {
+  font-size: 0.72rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+  color: #232323;
+  min-width: 100px;
+}
+
+.topo-ia .botao-acao:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 980px) {
+  .topo-ia {
+    justify-content: flex-start;
+    gap: 0.2rem;
+  }
+  .topo-ia-texto {
+    display: block;
+    width: 100%;
+    font-size: 0.75rem;
+  }
+  .topo-ia-acoes .botao-acao {
+    min-width: 85px;
+    font-size: 0.72rem;
+    padding: 0.35rem 0.5rem;
+  }
+}
+
+
+/* ==========================================================================
+   APENAS ESTILO DO BOTÃO DA IA (RS BURGER DESIGN)
+   ========================================================================== */
+
+/* Container que envolve o botão no topo */
+/* ==========================================================================
+   ESTILO DO BOTÃO IA COM O TEXTO DE APOIO PEQUENO
+   ========================================================================== */
+
+.topo-ia {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  /* Cor de fundo baseada na imagem que você enviou */
+  background: #ffd9c4; 
+  border-radius: 12px;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.topo-ia-texto {
+  display: block;
+  line-height: 1.2;
+}
+
+/* "Se sentindo indeciso?" em negrito e pequeno */
+.topo-ia-texto strong {
+  display: block;
+  font-size: 0.75rem;
+  color: #231f20;
+  margin-bottom: 2px;
+}
+
+/* Frase secundária bem pequena */
+.topo-ia-texto span {
+  display: block;
+  font-size: 0.65rem;
+  color: rgba(35, 31, 32, 0.8);
+  font-weight: 400;
+}
+
+#abrirIaPedidoTopo {
+  background: var(--cor-primaria); /* Vermelho do site */
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  white-space: nowrap;
+}
+
+#abrirIaPedidoTopo:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+/* Responsividade: em telas muito pequenas, deixamos apenas o botão para não quebrar */
+@media (max-width: 768px) {
+  .topo-ia-texto {
+    display: none;
+  }
+  .topo-ia {
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+  
+}
+
+/* Isso faz com que a seção pare abaixo do seu cabeçalho fixo */
+.secao-menu {
+    scroll-margin-top: 120px; /* Ajuste esse valor para a altura da sua barra de topo */
+    outline: none; /* Remove bordas de foco ao clicar */
+}
+
+/* Garante que a descida seja suave e não um "pulo" seco */
+html {
+    scroll-behavior: smooth;
+}
