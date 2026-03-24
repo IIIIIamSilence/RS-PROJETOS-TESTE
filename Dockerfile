@@ -1,10 +1,13 @@
 FROM php:8.2-apache
 
-# 1. Copia todos os arquivos da raiz do GitHub para a raiz do servidor
+# Habilita o módulo de variáveis de ambiente do Apache
+RUN a2enmod env
+
+# Copia os arquivos
 COPY . /var/www/html/
 
-# 2. Dá as permissões corretas para o Apache ler tudo
-RUN chown -R www-data:www-data /var/www/html
+# Esta linha é o segredo: ela força o Apache a passar as variáveis para o PHP
+RUN echo "PassEnv GEMINI_API_KEY" >> /etc/apache2/conf-enabled/expose-env.conf
 
-# 3. Informa a porta padrão
+RUN chown -R www-data:www-data /var/www/html
 EXPOSE 80
