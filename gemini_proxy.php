@@ -5,12 +5,17 @@ session_start(); // 🔥 memória da IA
 // ===============================
 // 1. API KEYS (ROTAÇÃO)
 // ===============================
-$apiKey = getenv('GEMINI_API_KEY');
 
-// Se não encontrar (ambiente local), você pode colocar uma trava
+// Tenta buscar de 3 formas diferentes para garantir que o Render entregue a chave
+$apiKey = getenv('GEMINI_API_KEY') ?: $_ENV['GEMINI_API_KEY'] ?: $_SERVER['GEMINI_API_KEY'];
+
 if (!$apiKey) {
-    die(json_encode(['error' => 'Chave de API não configurada no servidor.']));
+    // Se ainda assim não achar, vamos avisar exatamente o que está faltando
+    echo json_encode(['error' => 'A variavel GEMINI_API_KEY nao foi detectada no ambiente do Render.']);
+    exit;
 }
+
+// O restante do seu código (curl, etc) continua igual abaixo...
 
 // ===============================
 // 2. RECEBER INPUT (CORRIGIDO)
