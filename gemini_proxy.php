@@ -163,78 +163,47 @@ foreach ($_SESSION['historico'] as $msg) {
 $mensagemCompleta .= "Cliente: " . $userPrompt;
 
 // ===============================
-// 6. CHAMADA GEMINI
+// 6. CHAMADA GEMINI (CORRIGIDO)
 // ===============================
-$respostaFinal = null;
-$erroFinal = null;
 
-foreach ($minhasChaves as $apiKey) {
+// Usamos a $apiKey que pegamos lá no topo do arquivo via getenv
+$url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" . $apiKey;
 
-    $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $apiKey;
+$payload = [
+    "contents" => [[
+        "parts" => [["text" => $mensagemCompleta]]
+    ]]
+];
 
-    $payload = [
-        "contents" => [[
-            "parts" => [["text" => $mensagemCompleta]]
-        ]]
-    ];
+$ch = curl_init($url);
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => json_encode($payload),
+    CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+    CURLOPT_SSL_VERIFYPEER => false
+]);
 
-    $ch = curl_init($url);
-    curl_setopt_array($ch, [
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => json_encode($payload),
-        CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
-        CURLOPT_SSL_VERIFYPEER => false
-    ]);
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
 
-    $response = curl_exec($ch);
-    curl_close($ch);
-
-    $dados = json_decode($response, true);
-
-    // ✅ SE FUNCIONOU → PARA TUDO
-    if (isset($dados['candidates'][0]['content']['parts'][0]['text'])) {
-        $respostaFinal = $dados['candidates'][0]['content']['parts'][0]['text'];
-
-        error_log("✅ SUCESSO COM KEY: " . substr($apiKey, 0, 10));
-        break;
-    }
-
-    // ❌ SE DEU ERRO → TENTA PRÓXIMA
-    if (isset($dados['error']['message'])) {
-        $erroFinal = $dados['error']['message'];
-
-        error_log("❌ ERRO NA KEY: " . substr($apiKey, 0, 10) . " | " . $erroFinal);
-        continue;
-    }
-}
+$dados = json_decode($response, true);
 
 // ===============================
-// 7. RESPOSTA FINAL
+// 7. RESPOSTA FINAL (AJUSTADO)
 // ===============================
-if (isset($dados['candidates'][0]['content']['parts'][0]['text'])) {
 
+if ($httpCode === 200 && isset($dados['candidates'][0]['content']['parts'][0]['text'])) {
     $resposta = $dados['candidates'][0]['content']['parts'][0]['text'];
 
-    // salva no histórico
+    // Salva no histórico
     $_SESSION['historico'][] = "Cliente: " . $userPrompt;
     $_SESSION['historico'][] = "IA: " . $resposta;
 
-    // mantém limite
-    if (count($_SESSION['historico']) > 10) {
-        $_SESSION['historico'] = array_slice($_SESSION['historico'], -10);
-    }
-
     echo json_encode(['resposta' => $resposta]);
-
 } else {
-    $erroReal = "Erro desconhecido";
-    
-    if (isset($dados['error']['message'])) {
-        $erroReal = $dados['error']['message'];
-    } elseif (isset($dados['promptFeedback']['blockReason'])) {
-        $erroReal = "Bloqueado por conteúdo: " . $dados['promptFeedback']['blockReason'];
-    }
-    
-    echo json_encode(['resposta' => "Erro Técnico: " . $erroReal]);
+    // Se der erro, vamos mostrar o que o Google respondeu para facilitar o conserto
+    $msgErro = $dados['error']['message'] ?? "Erro desconhecido (HTTP $httpCode)";
+    echo json_encode(['resposta' => "Erro Técnico: " . $msgErro]);
 }
