@@ -42,7 +42,7 @@ if (empty($userVoiceText)) {
 // ============================================================
 // 3. CONFIGURAÇÃO DA IA (REGRAS PARA VOZ)
 // ============================================================
-$instrucoes = "Você é o atendente virtual do RS Burger. Sua voz será sintetizada.
+$instrucoes = "Você é o atendente virtual do Menu Acessivel. Sua voz será sintetizada.
 
 REGRAS DE HUMANIZAÇÃO:
 - Use frases curtas e naturais. 
