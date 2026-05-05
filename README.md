@@ -21,6 +21,7 @@ O projeto utiliza a stack Full Stack básica para web:
 --------
 
 ⚙️ Como executar
+
 1.Acesse https://rs-projetos-teste.onrender.com/
 
 2.Aguarde aproximadamente 20 segundos para ativação do servidor
