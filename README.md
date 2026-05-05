@@ -1,44 +1,39 @@
-# 🍔 RS Burger - Cardápio Digital Dinâmico
+🍔 RS Burger - Cardápio Digital Dinâmico (Hackathon RS Solutions)
 
-Bem-vindo ao repositório do RS Burger! Este é um projeto de cardápio interativo desenvolvido para oferecer uma experiência de pedido fluida e moderna, utilizando processamento no lado do servidor para maior dinamismo.
+Olá! Se você está lendo isso, agradeço muito sua curiosidade e por ter demonstrado interesse no meu projeto! ✨
+
+Este projeto foi desenvolvido em modo **VibeCoding** para uma apresentação proposta pela empresa **RS Solutions**. O desafio consistia em um hackathon para criar uma aplicação (web ou app) de um restaurante com menu integrado.
+
+🎯 Desafio
+O projeto deveria seguir três pilares fundamentais:
+-   **Acessibilidade:** Interface inclusiva e navegável.
+-   **Fidelidade:** Design fiel à proposta de um cardápio moderno.
+-   **Segurança:** Tratamento de dados e navegação confiável.
+-   **Inteligência Artificial:** O sistema deveria conter uma IA integrada para sugerir pratos ao cliente de forma personalizada.
 
 🚀 Tecnologias Utilizadas
-
-O projeto utiliza a Full Stack básica para web:
-
--   HTML5: Estruturação semântica do conteúdo.
--   CSS3: Estilização moderna com Grid, Flexbox e Variáveis (Root).
--   JavaScript: Interatividade no front-end e controle do chat.
--   PHP: Processamento de dados no servidor, permitindo tornar o cardápio dinâmico e gerenciar envios de formulários.
+O projeto utiliza uma stack **Full Stack** completa:
+-   **HTML5:** Estruturação semântica focada em acessibilidade.
+-   **CSS3:** Estilização moderna com Grid, Flexbox e Variáveis (Root).
+-   **JavaScript:** Interatividade no front-end, controle do chat e consumo de API.
+-   **PHP:** Processamento de dados no servidor para dinamismo e segurança.
+-   **IA & API:** Integração com inteligência artificial para recomendações personalizadas.
 
 🛠️ Funcionalidades
-
--   Navegação Inteligente: Âncoras que facilitam a navegação entre categorias (Pizzas, Burgers, etc).
--   Componentes Dinâmicos: Uso de PHP para carregar informações ou processar interações do usuário.
--   Design Responsivo: Totalmente adaptado para dispositivos móveis e desktop.
--   Suporte a Imagens Reais: Implementação de caminhos relativos (`../`) para organização eficiente de arquivos de mídia.
-
---------
+-   **Sugestões por IA:** Um assistente inteligente que ajuda clientes indecisos a escolherem o prato ideal.
+-   **Navegação Inteligente:** Uso de âncoras para facilitar o deslocamento entre categorias (Pizzas, Burgers, etc).
+-   **Componentes Dinâmicos:** PHP utilizado para carregar informações e gerenciar interações.
+-   **Design Responsivo:** Experiência otimizada para dispositivos móveis e desktop.
+-   **Gestão de Mídia:** Organização eficiente de imagens reais utilizando caminhos relativos (`../`).
 
 ⚙️ Como executar
 
-1.Acesse https://rs-projetos-teste.onrender.com/
+1.  Acesse: https://rs-projetos-teste.onrender.com/
+2.  Como o servidor está em uma plataforma gratuita, aguarde aproximadamente **20 segundos** para a ativação inicial do servidor.
+3.  Aproveite a experiência!
 
-2.Aguarde aproximadamente 20 segundos para ativação do servidor
-
-3.Acesse o site
-
-----------
 ✍️ Autor
+Desenvolvido com dedicação por **Enzo Simon Moscoso**.
 
-Desenvolvido por Enzo Simon Moscoso.
-
-----------
-✨ Aprendizado aplicado: Navegação de diretórios com caminhos relativos e integração Front/Back-end.
-----------
-
-Olá, se você está lendo isso agradeço muito sua curiosidade e por ter apresentado interesse no meu projeto!
-
-Este projeto foi feito de forma com VibeCodding, para um projeto de apresentação para empresa chamada RS Solutions, foi proposto um desafio hackathon cujo desafios eram fazer um programa seja app ou web de um restaurante com menu.
-O projeto deveria conter uma IA integrada que sugerisse pratos ao cliente da melhor forma que desejar, o projeto deveria seguir os pilares de acessibilidade, fidelidade e segurança
-
+---
+**✨ Aprendizado aplicado:** Integração de Inteligência Artificial, navegação de diretórios complexos e arquitetura Front/Back-end para soluções reais.
