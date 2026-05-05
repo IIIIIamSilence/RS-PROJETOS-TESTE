@@ -5,6 +5,7 @@ Olá! Se você está lendo isso, agradeço muito sua curiosidade e por ter demon
 Este projeto foi desenvolvido em modo **VibeCoding** para uma apresentação proposta pela empresa **RS Solutions**. O desafio consistia em um hackathon para criar uma aplicação (web ou app) de um restaurante com menu integrado.
 
 🎯 Desafio
+
 O projeto deveria seguir três pilares fundamentais:
 -   **Acessibilidade:** Interface inclusiva e navegável.
 -   **Fidelidade:** Design fiel à proposta de um cardápio moderno.
@@ -12,6 +13,7 @@ O projeto deveria seguir três pilares fundamentais:
 -   **Inteligência Artificial:** O sistema deveria conter uma IA integrada para sugerir pratos ao cliente de forma personalizada.
 
 🚀 Tecnologias Utilizadas
+
 O projeto utiliza uma stack **Full Stack** completa:
 -   **HTML5:** Estruturação semântica focada em acessibilidade.
 -   **CSS3:** Estilização moderna com Grid, Flexbox e Variáveis (Root).
@@ -20,6 +22,7 @@ O projeto utiliza uma stack **Full Stack** completa:
 -   **IA & API:** Integração com inteligência artificial para recomendações personalizadas.
 
 🛠️ Funcionalidades
+
 -   **Sugestões por IA:** Um assistente inteligente que ajuda clientes indecisos a escolherem o prato ideal.
 -   **Navegação Inteligente:** Uso de âncoras para facilitar o deslocamento entre categorias (Pizzas, Burgers, etc).
 -   **Componentes Dinâmicos:** PHP utilizado para carregar informações e gerenciar interações.
@@ -33,6 +36,7 @@ O projeto utiliza uma stack **Full Stack** completa:
 3.  Aproveite a experiência!
 
 ✍️ Autor
+
 Desenvolvido com dedicação por **Enzo Simon Moscoso**.
 
 ---
