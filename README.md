@@ -4,7 +4,7 @@ Bem-vindo ao repositório do RS Burger! Este é um projeto de cardápio interati
 
 🚀 Tecnologias Utilizadas
 
-O projeto utiliza a stack Full Stack básica para web:
+O projeto utiliza a Full Stack básica para web:
 
 -   HTML5: Estruturação semântica do conteúdo.
 -   CSS3: Estilização moderna com Grid, Flexbox e Variáveis (Root).
