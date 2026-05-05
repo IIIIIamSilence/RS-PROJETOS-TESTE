@@ -35,6 +35,7 @@ Desenvolvido por Enzo Simon Moscoso.
 
 ----------
 ✨ Aprendizado aplicado: Navegação de diretórios com caminhos relativos e integração Front/Back-end.
+----------
 
 Olá, se você está lendo isso agradeço muito sua curiosidade e por ter apresentado interesse no meu projeto!
 
