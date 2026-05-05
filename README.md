@@ -30,6 +30,7 @@ O projeto utiliza a stack Full Stack básica para web:
 
 ----------
 ✍️ Autor
+
 Desenvolvido por Enzo Simon Moscoso.
 
 ----------
